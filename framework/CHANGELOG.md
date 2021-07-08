@@ -1,23 +1,92 @@
 Yii Framework 2 Change Log
 ==========================
 
-2.0.41 under development
+2.0.43 under development
 ------------------------
 
-- Enh #18483: Add `yii\log\Logger::$dbEventNames` that allows specifying event names used to get statistical results (profiling) of DB queries (atiline)
-- Enh #18455: Add ability to use separate attributes for data model and filter model of `yii\grid\GridView` in `yii\grid\DataColumn` (PowerGamer1)
-- Enh #18447: Do not use `getLastInsertID` to get PK from insert query to lower collision probability for concurrent inserts (darkdef)
-- Bug #18448: Fix issues in queries and tests for older MSSQL versions (darkdef)
-- Bug #18464: Fix bug with processing fallback messages when translation language is set to `null` (bizley)
-- Enh #18457: Add `EVENT_RESET` and `EVENT_FINISH` events to `yii\db\BatchQueryResult` (brandonkelly)
-- Bug #18472: Fix initializing `db` component configuration in `yii\data\ActiveDataProvider` (bizley)
-- Bug #18479: Fix invalid argument type for `preg_split` in `\yii\console\Controller` (gazooz)
-- Bug #18477: Fix detecting availability of Xdebug's stack trace in `yii\base\ErrorException` (bizley)
-- Bug #18480: Transactions are not committed using the dblib driver (bbrunekreeft)
-- Enh #18493: Faster request parsing for REST UrlRule with prefix handling (bizley)
-- Enh #18487: Allow creating URLs for non-GET-verb rules (bizley)
+- Bug #14663: Do not convert int to string if database type of a column is numeric (egorrishe)
+- Bug #18650: Refactor `framework/assets/yii.activeForm.js` arrow function into traditional function for IE11 compatibility (marcovtwout)
+- Bug #18749: Fix `yii\web\ErrorHandler::encodeHtml()` to support strings with invalid UTF symbols (vjik)
+- Enh #18724: Allow jQuery 3.6 to be installed (marcovtwout)
+- Enh #18628: Added strings "software", and "hardware" to `$specials` array in `yii\helpers\BaseInflector` (kjusupov)
+- Enh #18653: Added method `yii\helpers\BaseHtml::getInputIdByName()` (WinterSilence)
+- Enh #18669: Changed visibility of `yii\web\User::checkRedirectAcceptable()` to `public` (rhertogh)
+- Enh #18676: Added method `yii\helpers\BaseFileHelper::changeOwnership()` and properties `newFileMode`/`newFileOwnership` in `yii\console\controllers\BaseMigrateController` (rhertogh)
+- Bug #18678: Fix `yii\caching\DbCache` to use configured cache table name instead of the default one in case of MSSQL varbinary column type detection (aidanbek)
+- Enh #18695: Added `yii\web\Cookie::SAME_SITE_NONE` constant (rhertogh)
+- Enh #18712: Added `scheme` option for `$options` argument for `yii\i18n\Formatter::asUrl()` (bizley)
+- Enh #18707: Changed the base error handler to not expose `$_SERVER` details unless `YII_DEBUG` is enabled (coolgoose)
+- Bug #18648: Fix `yii\web\Request` to properly handle HTTP Basic Auth headers (olegbaturin)
+- Enh #18726: Added `yii\helpers\Json::$prettyPrint` (rhertogh)
+- Enh #18734: Added `yii\validators\EmailValidator::$enableLocalIDN` (brandonkelly)
+
+
+2.0.42.1 May 06, 2021
+---------------------
+
+- Bug #18634: Fix `yii\db\BaseActiveRecord::unlink()` and `unlinkAll()` to omit condition for `on` property when it doesn't exist (bizley)
+
+
+2.0.42 May 05, 2021
+-------------------
+
+- Bug #14343: Fix `yii\test\ActiveFixture` to use model's DB connection instead of the default one (margori, bizley)
+- Bug #17174: Fix `yii\db\BaseActiveRecord::unlink()` to not ignore `on` conditions in `via` relations (bizley)
+- Bug #17203: Fix `yii\db\Connection` to persist customized `queryBuilder` configuration after the `close()` → `open()` cycle (silverfire)
+- Bug #17479: Fix `yii\grid\ActionColumn` to render icons when no glyphicons are available (simialbi)
+- Bug #17631: Fix `yii\widgets\BaseListView` to properly render custom summary (sjaakp, bizley)
+- Bug #18323: Fix client validation of RadioList when there are disabled items (toir427)
+- Bug #18325: Fix `yii\db\pgsql\Schema` to respect non-default PgSQL schema name for data types (theonedemon, silverfire)
+- Bug #18526: Fix `yii\caching\DbCache` to work with MSSQL, add `normalizeTableRowData()` to `yii\db\mssql\QueryBuilder::upsert()` (darkdef)
+- Bug #18544: Fix `yii\validators\NumberValidator` to disallow values with whitespaces (bizley)
+- Bug #18552: Fix `yii\data\SqlDataProvider` to properly handle SQL with `ORDER BY` clause (bizley)
+- Bug #18557: Fix `yii\data\ActiveDataProvider` to handle DB connection configuration of different type than just `yii\db\Connection` (bizley)
+- Bug #18574: Fix `yii\web\DbSession` to use the correct db if strict mode is used (Mignar)
+- Bug #18585: Fix `yii\validators\EmailValidator` to handle an edge case where `IDN` is enabled, but fails ascii conversion for valid email addresses (ihitbuttons)
+- Bug #18590: Fix `yii\web\UrlManager` to instantiate cache only when it's actually needed (bizley)
+- Bug #18592: Fix `yii\db\Command::getRawSql()` to not replace query params in invalid places (sartor)
+- Bug #18593: Fix setting the `maxlength` attribute for `Html::activeInput()` and `Html::activeTextArea()` based on `length` parameter of validator (BSCheshir)
+- Bug #18604: Function alterColumn for MSSQL build incorrect query with default values `NULL` and other expressions (darkdef)
+- Bug #18613: Do not call static methods non-statically in `BaseActiveRecord` (samdark)
+- Bug #18619: Do not modify `yii\web\Cookie::$path` on `yii\web\Response::sendCookies()` (mikk150)
+- Bug #18624: Fix `yii\di\Container` to properly resolve dependencies in case of PHP 8 union types (bizley)
+- Enh #18534: Add `prepareSearchQuery` property in `yii\rest\IndexAction` (programmis)
+- Enh #18566: Throw the original exception when `yii\web\Controller::bindInjectedParams()` catches HttpException (pigochu)
+- Enh #18569: Add `NumberValidator::$allowArray` (raidkon)
+
+
+2.0.41.1 March 04, 2021
+-----------------------
+
+- Bug #18545: Reversed changes made to the `yii\db\Query::all()` and `indexBy` handling (bizley)
+- Bug #18548: Fix bug with REST rules with prefixes containing tokens not being parsed properly (bizley)
+
+
+2.0.41 March 03, 2021
+---------------------
+
 - Bug #8750: Fix MySQL support when running in `ANSI`/`ANSI_QUOTES` modes (brandonkelly)
-- Bug #18505: Fixed `yii\helpers\ArrayHelper::getValue()` for ArrayAccess objects with explicitly defined properties (samdark)
+- Bug #9718: Fix user staying authorized despite authKey change (kidol, Charlie Jack, Kunal Mhaske, samdark)
+- Bug #18448: Fix issues in queries and tests for older MSSQL versions (darkdef)
+- Bug #18450: Allow empty string to be passed as a nullable typed argument to a controller's action (dicrtarasov, bizley)
+- Bug #18464: Fix bug with processing fallback messages when translation language is set to `null` (bizley)
+- Bug #18472: Fix initializing `db` component configuration in `yii\data\ActiveDataProvider` (bizley)
+- Bug #18477: Fix detecting availability of Xdebug's stack trace in `yii\base\ErrorException` (bizley)
+- Bug #18479: Fix invalid argument type for `preg_split()` in `\yii\console\Controller` (gazooz)
+- Bug #18480: Transactions are not committed using the dblib driver (bbrunekreeft)
+- Bug #18505: Fix `yii\helpers\ArrayHelper::getValue()` for ArrayAccess objects with explicitly defined properties (samdark)
+- Bug #18508: Fix Postgres SQL query for load table indexes with correct column order (insolita)
+- Bug #18529: Fix asset files path with `appendTimestamp` option for non-root-relative base URLs (bizley)
+- Bug #18535: Set Cookie SameSite to Lax by default (samdark)
+- Bug #18539: Fix "driver does not support quoting" when using the driver pdo_odbc (xpohoc69)
+- Enh #18447: Do not use `getLastInsertID()` to get PK from insert query to lower collision probability for concurrent inserts (darkdef)
+- Enh #18455: Add ability to use separate attributes for data model and filter model of `yii\grid\GridView` in `yii\grid\DataColumn` (PowerGamer1)
+- Enh #18457: Add `EVENT_RESET` and `EVENT_FINISH` events to `yii\db\BatchQueryResult` (brandonkelly)
+- Enh #18460: `compareValue` in `CompareValidator` can now take a closure returning a value (mmonem)
+- Enh #18483: Add `yii\log\Logger::$dbEventNames` that allows specifying event names used to get statistical results (profiling) of DB queries (atiline)
+- Enh #18487: Allow creating URLs for non-GET-verb rules (bizley)
+- Enh #18493: Faster request parsing for REST UrlRule with prefix handling (bizley)
+- Enh #18499: When using `yii\db\Query::all()` and `yii\db\Query::$indexBy`, the `yii\db\Query::$indexBy` is auto inserted into `yii\db\Query::$select` - the same as in `yii\db\Query::column()` (OndrejVasicek, samdark, bizley)
 - Enh #18518: Add support for ngrok’s `X-Original-Host` header (brandonkelly)
 
 
